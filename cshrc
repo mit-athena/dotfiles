@@ -187,11 +187,11 @@ endif
 if (! $?skip_sanity_checks) then
   set missing=0
   echo $path | /usr/bin/tr ' ' '\n' | /bin/grep -Fqx /bin
-  if ( $? != 0 ) then
+  if ( $status != 0 ) then
     set missing=1
   endif
   echo $path | /usr/bin/tr ' ' '\n' | /bin/grep -Fqx /usr/bin
-  if ( $? != 0 ) then
+  if ( $status != 0 ) then
     set missing=1
   endif
   if ( $missing == 1 ) then
