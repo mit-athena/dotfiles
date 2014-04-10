@@ -1,3 +1,10 @@
+debathena-dotfiles (10.0.35) unstable; urgency=low
+
+  * Update lert dependency to lert-compat, which replaces lert.
+    (Trac: #1460)
+
+ -- Jonathan Reed <jdreed@mit.edu>  Thu, 10 Apr 2014 13:04:34 -0400
+
 debathena-dotfiles (10.0.34) unstable; urgency=low
 
   * Add git-buildpackage configuration
