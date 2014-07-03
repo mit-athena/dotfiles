@@ -1,0 +1,30 @@
+#!/bin/sh
+# 
+# This is _executed_, not sourced
+#
+# A hook to do things before ending a graphical session
+
+# Fix for Trac #1481 / LP# 1328677
+# Enure XDG_CACHE_HOME and XDG_CONFIG_HOME are sane
+: ${XDG_CACHE_HOME="$HOME/.cache"}
+: ${XDG_CONFIG_HOME="$HOME/.config"}
+
+# Save the fact that we've run unity so we can
+# re-populate it at next login.  Because Unity.
+if [ -e "${XDG_CACHE_HOME}/unity/first_run.stamp" ]; then
+    mkdir -p "${XDG_CONFIG_HOME}/debathena"
+    touch "${XDG_CONFIG_HOME}/debathena/unity-first-run.stamp"
+fi
+# END Fix for Trac #1481 / LP# 1328677
+
+# See if a package wants to reboot
+if [ "$(machtype -L)" != "debathena-cluster" ] && \
+   [ -f /var/run/reboot-required ] && \
+   [ -n "$DISPLAY" ]; then
+    reason="A package or process has indicated that a reboot is needed."
+    if egrep -q '[[:alnum:]]' /var/run/reboot-required; then
+	reason="$(cat /var/run/reboot-required)"
+    fi
+    zenity --no-wrap --info --title="Reboot Needed" --text="Your workstation needs to be rebooted.\nReason: $reason\nPlease reboot as soon as possible."
+fi
+exit 0

@@ -150,9 +150,9 @@ endif
 
 if ($?XSESSION) then
   if ( -x /usr/bin/gnome-session-quit ) then
-    alias logout	'exit && /usr/lib/init/check-for-reboot && gnome-session-quit --no-prompt'	# logout for X
+    alias logout	'exit && /usr/lib/init/x-logout-tasks && gnome-session-quit --no-prompt'	# logout for X
   else
-    alias logout	'exit && /usr/lib/init/check-for-reboot && gnome-session-save --kill --silent'	# logout for X
+    alias logout	'exit && /usr/lib/init/x-logout-tasks && gnome-session-save --kill --silent'	# logout for X
   endif
 endif
 

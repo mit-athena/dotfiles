@@ -1,3 +1,12 @@
+debathena-dotfiles (10.0.36) unstable; urgency=low
+
+  * Rename check-for-reboot to x-logout-tasks to better reflect its new
+    purpose; install a compatibility symlink just in case
+  * Update x-logout-tasks to check for unity's first-run stamp and save it
+    in the homedir, as a workaround for LP: 1328677 (Trac: #1481)
+
+ -- Jonathan Reed <jdreed@mit.edu>  Thu, 03 Jul 2014 14:26:23 -0400
+
 debathena-dotfiles (10.0.35) unstable; urgency=low
 
   * Update lert dependency to lert-compat, which replaces lert.
